@@ -31,6 +31,7 @@ export const SITE_REQUEST_OPTIONS = [
 	'default_post_format',
 	'default_sharing_status',
 	'design_type',
+	'external_contributors',
 	'frame_nonce',
 	'frame_nonce_site_only',
 	'gmt_offset',
