@@ -38,7 +38,8 @@ import SidebarNavigation from 'my-sites/sidebar-navigation';
 import JetpackChecklist from 'my-sites/plans/current-plan/jetpack-checklist';
 import { isEnabled } from 'config';
 import QueryJetpackPlugins from 'components/data/query-jetpack-plugins';
-import CurrentPlanThankYouCard from './current-plan-thank-you-card';
+import PaidPlanThankYouCard from './current-plan-thank-you-card/paid-plan-thank-you-card';
+import FreePlanThankYouCard from './current-plan-thank-you-card/free-plan-thank-you-card';
 
 /**
  * Style dependencies
@@ -106,6 +107,9 @@ class CurrentPlan extends Component {
 		const currentPlanSlug = selectedSite.plan.product_slug,
 			isLoading = this.isLoading();
 
+		const currentPlanThankYouCard =
+			currentPlanSlug === 'jetpack_free' ? <FreePlanThankYouCard /> : <PaidPlanThankYouCard />;
+
 		const planConstObj = getPlan( currentPlanSlug ),
 			planFeaturesHeader = translate( '%(planName)s plan features', {
 				args: { planName: planConstObj.getTitle() },
@@ -143,7 +147,7 @@ class CurrentPlan extends Component {
 				) }
 
 				{ showThankYou ? (
-					<CurrentPlanThankYouCard />
+					currentPlanThankYouCard
 				) : (
 					<CurrentPlanHeader
 						isPlaceholder={ isLoading }
